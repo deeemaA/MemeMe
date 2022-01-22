@@ -50,7 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSAttributedString.Key.strokeColor: UIColor.black ,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "Charter Roman", size: 35)!,
-        NSAttributedString.Key.strokeWidth: -3.0
+        NSAttributedString.Key.strokeWidth: -5.0
     ]
     
     override func viewDidLoad() {
