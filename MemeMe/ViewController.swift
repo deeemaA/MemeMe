@@ -32,8 +32,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func generateMemedImage() -> UIImage {
         // TODO: Hide toolbar and navbar
-        navBar.isHidden = true
-        toolBar.isHidden = true
+        hideAndShowBars(true)
+
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -41,59 +41,57 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
 
         // TODO: Show toolbar and navbar
-        navBar.isHidden = false
-        toolBar.isHidden = false
+        hideAndShowBars(false)
+
         return memedImage
     }
     
+    func hideAndShowBars( _ flag : Bool){
+        navBar.isHidden = flag
+        toolBar.isHidden = flag
+    }
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black ,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "Charter Roman", size: 35)!,
-        NSAttributedString.Key.strokeWidth: -5.0
+      .strokeColor: UIColor.black ,
+      .foregroundColor: UIColor.white,
+      .font: UIFont(name: "Charter Roman", size: 40)!,
+      .strokeWidth: -3.0
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-        
-        topTextField.delegate = self
-        bottomTextField.delegate = self
-        
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        
-        bottomTextField.textAlignment = .center
-        topTextField.textAlignment = .center
-        
+        setupTextField(topTextField, text: "TOP")
+        setupTextField(bottomTextField, text: "BOTTOM")
+    }
+    
+    func setupTextField(_ textField : UITextField!, text: String) {
+        textField.text = text
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
         shareButton.isEnabled = false
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
-
     }
-
 
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeFromKeyboardNotifications()
     }
-   
-    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+    func presentPickerViewController(source: UIImagePickerController.SourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
+        pickerController.sourceType = source
         present(pickerController, animated: true, completion: nil)
     }
     
+    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+        presentPickerViewController(source: .photoLibrary)
+    }
+    
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .camera
-        present(pickerController, animated: true, completion: nil)
+        presentPickerViewController(source: .camera)
     }
     
     
@@ -143,6 +141,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
+    
+    
     func subscribeToKeyboardNotifications() {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -151,7 +151,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder {
