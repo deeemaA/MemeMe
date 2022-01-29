@@ -16,22 +16,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var navBar: UIToolbar!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    
-    struct Meme {
-        var topText : String
-        var bottomText : String
-        var originalImage : UIImage
-        var memedImage : UIImage
-    }
+//
+//    struct Meme {
+//        var topText : String
+//        var bottomText : String
+//        var originalImage : UIImage
+//        var memedImage : UIImage
+//    }
     
     func save(){
         // Create the meme
         let memedImage = generateMemedImage()
-               let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        
+        
+        // Add it to the memes array in the Application Delegate
+         let object = UIApplication.shared.delegate
+         let appDelegate = object as! AppDelegate
+         appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
-        // TODO: Hide toolbar and navbar
+        // Hide toolbar and navbar
         hideAndShowBars(true)
 
         // Render view to an image
