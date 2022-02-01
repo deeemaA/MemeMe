@@ -19,30 +19,22 @@ class TabelViewController: UIViewController, UINavigationControllerDelegate, UIT
         // MARK: Table View Data Source
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return self.memes.count
+            return memes.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "memeCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "memeTableCell") as! memeTableViewCell
             let memes = self.memes[(indexPath as NSIndexPath).row]
             
-            // Set the name and image
-            cell.textLabel?.text = memes.topText
-//            cell.imageView?.image = UIImage(memes.originalImage)
-            cell.imageView?.image = memes.memedImage
-//            cell.bottomLabel?.text = memes.bottomText
-            
-//            // If the cell has a detail label, we will put the evil scheme in.
-//            if let detailTextLabel = cell.detailTextLabel {
-//                detailTextLabel.text = "Scheme: \(villain.evilScheme)"
-//            }
+            cell.topText.text = memes.topText
+            cell.bottomText.text = memes.bottomText
+            cell.memedImage.image = memes.memedImage
             
             return cell
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
             let memeController = self.storyboard!.instantiateViewController(withIdentifier: "MemeViewController") as! MemeViewController
             memeController.meme = self.memes[(indexPath as NSIndexPath).row]
             self.navigationController!.pushViewController(memeController, animated: true)

@@ -135,6 +135,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         activityController.completionWithItemsHandler = {( type, ok, items, error ) in
                     if ok {
                         self.save()
+                        self.dismiss(animated: true, completion: nil)
+                        
                     }
                 }
     }
@@ -145,6 +147,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
         dismiss(animated: true, completion: nil)
+        
+//        let alert = UIAlertController(title: AppModel.alert.alertTitle , message: AppModel.alert.alertMessage, preferredStyle: .actionSheet)
+//
+//        let clear = UIAlertAction(title: "Clear Meme Editor", style: .destructive) { (UIAlertAction) in
+//
+//            self.imagePickerView.image = nil
+//            self.resetTextfieldText()
+//            self.shareButton.isEnabled = false
+//        }
+//
+//        let dismiss = UIAlertAction(title: "Dismiss Meme Editor", style: .destructive, handler: { (UIAlertAction) in
+//
+//            self.dismiss(animated: true, completion: nil)
+//        })
+//
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//
+//
+//        alert.addAction(clear)
+//        alert.addAction(dismiss)
+//        alert.addAction(cancel)
+//
+//        self.present(alert, animated: true, completion: nil)
     }
     
     
