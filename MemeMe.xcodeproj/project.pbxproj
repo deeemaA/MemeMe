@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9540170627A9C721006FC805 /* MemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9540170527A9C721006FC805 /* MemeViewController.swift */; };
 		95A91D7027A57D4100DB047E /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A91D6F27A57D4100DB047E /* Meme.swift */; };
 		95A91D7227A57F9700DB047E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A91D7127A57F9700DB047E /* CollectionViewController.swift */; };
 		95A91D7427A57FA700DB047E /* TabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A91D7327A57FA700DB047E /* TabelViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9540170527A9C721006FC805 /* MemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeViewController.swift; sourceTree = "<group>"; };
 		95A91D6F27A57D4100DB047E /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		95A91D7127A57F9700DB047E /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		95A91D7327A57FA700DB047E /* TabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabelViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				95CCDD3D26E969FF0061B949 /* ViewController.swift */,
 				95A91D7127A57F9700DB047E /* CollectionViewController.swift */,
 				95A91D7327A57FA700DB047E /* TabelViewController.swift */,
+				9540170527A9C721006FC805 /* MemeViewController.swift */,
 				95A91D6F27A57D4100DB047E /* Meme.swift */,
 				95CCDD3F26E969FF0061B949 /* Main.storyboard */,
 				95CCDD4226E96A000061B949 /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 				95CCDD3E26E969FF0061B949 /* ViewController.swift in Sources */,
 				95A91D7027A57D4100DB047E /* Meme.swift in Sources */,
 				95CCDD3A26E969FF0061B949 /* AppDelegate.swift in Sources */,
+				9540170627A9C721006FC805 /* MemeViewController.swift in Sources */,
 				95CCDD3C26E969FF0061B949 /* SceneDelegate.swift in Sources */,
 				95A91D7227A57F9700DB047E /* CollectionViewController.swift in Sources */,
 				95A91D7427A57FA700DB047E /* TabelViewController.swift in Sources */,
