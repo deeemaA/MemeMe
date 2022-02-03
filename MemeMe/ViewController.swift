@@ -17,17 +17,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
-    struct Meme {
-        var topText : String
-        var bottomText : String
-        var originalImage : UIImage
-        var memedImage : UIImage
-    }
     
     func save(){
         // Create the meme
         let memedImage = generateMemedImage()
-               let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text! as NSString , bottomText: bottomTextField.text! as NSString, image: imagePickerView.image!, memedImage: memedImage)
+        
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        
     }
     
     func generateMemedImage() -> UIImage {
@@ -129,6 +128,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         activityController.completionWithItemsHandler = {( type, ok, items, error ) in
                     if ok {
                         self.save()
+                        
+                        //Dismiss the shareActivityViewController
+                        self.dismiss(animated: true, completion: nil)
+
+                        //Unwind to SentMemeTableView
+                       // self.performSegue(withIdentifier: AppModel.memeEditorSegueIdentifier, sender: nil)
                     }
                 }
     }
