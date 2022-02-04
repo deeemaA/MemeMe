@@ -7,12 +7,12 @@
 
 import UIKit
 
-class SentMemesCollectionViewController: UICollectionViewController {
-
-    //MARK: Properties & Outlets
+class CollectionViewController: UICollectionViewController {
 
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
 
+    //var memes = (UIApplication.shared.delegate as! AppDelegate).memes
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,34 +36,25 @@ class SentMemesCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //Set Navigation Controller & Tab Bar Controller Hidden Properties
         navigationController?.isNavigationBarHidden = false
         tabBarController?.tabBar.isHidden = false
-
         collectionView?.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        return Meme.count()
+        return Meme.getMemes().memes.count
     }
 
-    //MARK: UICollectionViews Delegates
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppModel.memesCollectionCellReuseIdentifier, for: indexPath) as! SentMemesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CollectionViewCell
 
-        let meme = Meme.getMemeStorage().memes[indexPath.item]
+        let meme = Meme.getMemes().memes[indexPath.item]
 
-        cell.updateCell(meme)
+        cell.memedImage.image = meme.memedImage
 
         return cell
 
@@ -71,14 +62,11 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        //Get the object of MemeDetailViewController from the Storyboard
-        let memeDetail = self.storyboard?.instantiateViewController(withIdentifier: AppModel.memeDetailStoryboardIdentifier) as! MemeDetailViewController
+        let details = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
 
-        //Pass the Meme Date
-        memeDetail.meme = Meme.getMemeStorage().memes[indexPath.row]
+        details.meme = Meme.getMemes().memes[indexPath.row]
 
-        //Push to the scene
-        navigationController?.pushViewController(memeDetail, animated: true)
+        navigationController?.pushViewController(details, animated: true)
     }
 }
 

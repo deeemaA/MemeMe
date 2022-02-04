@@ -7,94 +7,54 @@
 
 import UIKit
 
-class SentMemesTableViewController: UITableViewController {
+class TableViewController: UITableViewController {
 
-    //MARK: Properties & Outlets
+
 
     @IBOutlet weak var addButton: UIBarButtonItem!
 
-    //MARK: LifeCycle Methods
-
-    override func viewDidLoad() {
-
-        super.viewDidLoad()
-        navigationItem.leftBarButtonItem = editButtonItem
-    }
-
+//    var memes = (UIApplication.shared.delegate as! AppDelegate).memes
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-
         super.viewWillAppear(animated)
-        //Set Navigation Controller & Tab Bar Controller Hidden Properties
         navigationController?.isNavigationBarHidden = false
         tabBarController?.tabBar.isHidden = false
-
-        //Reload Table with memes data
         tableView!.reloadData()
     }
 
-    override func setEditing(_ editing: Bool, animated: Bool) {
 
-        super.setEditing(editing, animated: animated)
-
-        addButton.isEnabled = !editing
-
-    }
-
-    // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return Meme.count()
-    }
-
-    //MARK: Table View Delegates
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-        return 100.0
+        return Meme.getMemes().memes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: AppModel.memesTableCellReuseIdentifier, for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
 
-        let meme = Meme.getMemeStorage().memes[indexPath.row]
+        let meme = Meme.getMemes().memes[indexPath.row]
 
-        cell.updateCell(meme)
+        cell.memedImage.image = meme.memedImage
+        cell.topText.text = meme.topText
+        cell.bottomText.text = meme.bottomText
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //Get the object of MemeDetailViewController from the Storyboard
-        let memeDetail = self.storyboard?.instantiateViewController(withIdentifier: AppModel.memeDetailStoryboardIdentifier) as! MemeDetailViewController
+        let details = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
 
-        //Pass the Meme Date
-        memeDetail.meme = Meme.getMemeStorage().memes[indexPath.row]
+        details.meme = Meme.getMemes().memes[indexPath.row]
 
-        //Push to the scene
-        navigationController?.pushViewController(memeDetail, animated: true)
+        navigationController?.pushViewController(details, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-        switch editingStyle {
-        case .delete:
-
-            Meme.getMemeStorage().memes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-
-        default:
-
-            return
-        }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
 
-    @IBAction func unwindToSentMemeTable(unwindSegue: UIStoryboardSegue) {
-
-        //This Method is used to unwind MemeEditor to this View Controller.
-    }
 
 }
 

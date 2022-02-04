@@ -7,17 +7,8 @@
 
 import UIKit
 
-class SentMemesCollectionViewCell: UICollectionViewCell {
-
-    //MARK: Outlets
+class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var memedImage: UIImageView!
 
-    //MARK: Custom Cell's Functions
-
-    func updateCell(_ meme: Meme) {
-
-        //update cell's view
-        memedImage.image = meme.memedImage
-    }
 }
