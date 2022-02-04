@@ -102,8 +102,8 @@
 				9525B03D27AC5B110083584E /* Table */,
 				9525B04627AC5C2C0083584E /* DetailsViewController.swift */,
 				95CCDD3F26E969FF0061B949 /* Main.storyboard */,
-				95CCDD4226E96A000061B949 /* Assets.xcassets */,
 				95CCDD4426E96A000061B949 /* LaunchScreen.storyboard */,
+				95CCDD4226E96A000061B949 /* Assets.xcassets */,
 				95CCDD4726E96A000061B949 /* Info.plist */,
 			);
 			path = MemeMe;

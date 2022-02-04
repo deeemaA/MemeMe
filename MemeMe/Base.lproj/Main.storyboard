@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,14 +22,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Share" image="square.and.arrow.up" catalog="system" id="AUx-8N-jz2">
-                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
                                             <action selector="shareMeme:" destination="BYZ-38-t0r" id="2yZ-HF-y16"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="4PB-KJ-UhV"/>
                                     <barButtonItem title="Cancel" id="4gG-G3-f2R">
-                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
                                             <action selector="cancelMeme:" destination="BYZ-38-t0r" id="AhT-KE-cZi"/>
                                         </connections>
@@ -43,7 +44,7 @@
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
                                     </barButtonItem>
                                     <barButtonItem title="Camera" image="camera" catalog="system" id="k87-r9-1yd">
-                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
                                             <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="Eni-Cj-2Y6"/>
                                         </connections>
@@ -52,7 +53,7 @@
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
                                     </barButtonItem>
                                     <barButtonItem title="Album" image="photo" catalog="system" id="u5b-0i-FC2">
-                                        <color key="tintColor" systemColor="systemTealColor"/>
+                                        <color key="tintColor" name="AccentColor"/>
                                         <connections>
                                             <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="Ufu-KF-BTz"/>
                                         </connections>
@@ -243,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4K1-1o-qLw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4039" y="157"/>
+            <point key="canvasLocation" x="4055" y="157"/>
         </scene>
         <!--Sent Memes-->
         <scene sceneID="Ise-lt-G6W">
@@ -345,7 +346,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vZL-Qi-U2E"/>
+        <segue reference="Tov-od-IWf"/>
         <segue reference="gKv-OH-InA"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -354,6 +355,9 @@
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="table_30x30" width="30" height="30"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -362,9 +366,6 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

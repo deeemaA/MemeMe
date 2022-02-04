@@ -9,21 +9,16 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-
-
     @IBOutlet weak var addButton: UIBarButtonItem!
 
 //    var memes = (UIApplication.shared.delegate as! AppDelegate).memes
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
+
         tabBarController?.tabBar.isHidden = false
         tableView!.reloadData()
     }
-
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Meme.getMemes().memes.count
@@ -32,7 +27,6 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
-
         let meme = Meme.getMemes().memes[indexPath.row]
 
         cell.memedImage.image = meme.memedImage
@@ -45,9 +39,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let details = self.storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-
         details.meme = Meme.getMemes().memes[indexPath.row]
-
         navigationController?.pushViewController(details, animated: true)
     }
 
